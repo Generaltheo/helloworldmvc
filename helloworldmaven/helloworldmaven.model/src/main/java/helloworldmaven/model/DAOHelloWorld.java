@@ -1,4 +1,7 @@
 package helloworldmaven.model;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 public class DAOHelloWorld {
     private String FileName = "HelloWorld.txt";
@@ -6,13 +9,13 @@ public class DAOHelloWorld {
     private String helloWorldMessage = null;
 
 
-    private DAOHelloWorld() {
-
+    DAOHelloWorld() {
+    	this.readFile();
     }
 
 
     public DAOHelloWorld getInstance() {
-        return instance;
+        return this.instance;
     }
 
 
@@ -21,11 +24,17 @@ public class DAOHelloWorld {
     }
 
     private void readFile() {
+    	try {
+            this.setHelloWorldMessage(Files.readAllLines(Paths.get(this.FileName)).get(0));
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
 
     public String getHelloWorldMessage() {
-        return helloWorldMessage;
+        return this.helloWorldMessage;
     }
 
 

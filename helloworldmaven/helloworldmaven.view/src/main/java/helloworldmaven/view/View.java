@@ -1,8 +1,10 @@
 package helloworldmaven.view;
 
-public class View {
+import helloworldmaven.Contract.IView;
+
+public class View implements IView{
 	public void displayMessage(String message)
 	{
-		System.out.println();
+		System.out.println(message);
 	}
 }
